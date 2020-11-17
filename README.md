@@ -15,10 +15,10 @@ This is a clone of the QOMP game developed in the Videogames subject in the FIB-
 * **QOMP** - See the QOMP game in [steam](https://store.steampowered.com/app/1066900/qomp)
 * **POMG** - See the original game idea in this [link](https://www.newgrounds.com/portal/view/683949)
 
-## Autores ✒️
+## Authors ✒️
 
 * **Bosch Pons, Joan** - *Development* - [joanbosch](https://github.com/joanbosch)
 * **Zhao, Daniela** - *Game Design & Development* - [daniizhao](https://github.com/daniizhao)
 
-Additionaly, you can see all the [contributors](https://github.com/your/project/contributors) that have been participate in this project.
+Additionaly, you can see all the [contributors](https://github.com/joanbosch/3d-game/contributors) that have been participate in this project.
 
