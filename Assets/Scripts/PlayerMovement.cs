@@ -9,12 +9,17 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public float speed = 1.0f;
 
+    //animation
+    Animator anim;
+    int bounceHash = Animator.StringToHash("bounce");
+    int deadHash = Animator.StringToHash("playerDead");
+
     // Start is called before the first frame update
     void Start()
     {
-
         rb = GetComponent<Rigidbody>();
         rb.velocity = initialDirection;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,6 +32,13 @@ public class PlayerMovement : MonoBehaviour
             if (rb.velocity.y > 0) Bounce(new Vector3(0.0f, -1.0f, 0.0f));
             else Bounce(new Vector3(0.0f, 1.0f, 0.0f));
         }
+        if (Input.GetKeyDown("return"))
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            anim.SetTrigger(deadHash);
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.useGravity = true;
+        }
     }
 
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
@@ -37,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Bounce(Vector3 normal)
     {
+        anim.SetTrigger(bounceHash);
         float vel = lastDirection.magnitude;
         Vector3 newDirection = Vector3.Reflect(lastDirection.normalized, normal);
         rb.velocity = newDirection.normalized * speed;
