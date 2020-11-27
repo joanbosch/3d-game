@@ -47,17 +47,17 @@ public class RacketMovement : MonoBehaviour
             }
 
             float yPlayer = player.transform.position.y;
-            Debug.Log("yPLAYER = " + yPlayer);
+            // Debug.Log("yPLAYER = " + yPlayer);
             float yRacket = GetComponent<Transform>().position.y;
-            Debug.Log("yRACKET = " + yRacket);
+            // Debug.Log("yRACKET = " + yRacket);
             if (yPlayer < yRacket)
             {
-                Debug.Log("GO UP!");
+                // Debug.Log("GO UP!");
                 rb.velocity = new Vector3(0.0f, -searchSpeed, 0.0f);
             }
             else if(yPlayer > yRacket)
             {
-                Debug.Log("GO DOWN!");
+                // Debug.Log("GO DOWN!");
                 rb.velocity = new Vector3(0.0f, searchSpeed, 0.0f);
             }
         }

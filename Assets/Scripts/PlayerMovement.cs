@@ -14,12 +14,18 @@ public class PlayerMovement : MonoBehaviour
     int bounceHash = Animator.StringToHash("bounce");
     int deadHash = Animator.StringToHash("playerDead");
 
+    //dead script
+    private TimeToReappear deadScript;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = initialDirection;
         anim = GetComponent<Animator>();
+
+        deadScript = GetComponent<TimeToReappear>();
+        deadScript.enabled = false;
     }
 
     // Update is called once per frame
@@ -32,19 +38,22 @@ public class PlayerMovement : MonoBehaviour
             if (rb.velocity.y > 0) Bounce(new Vector3(0.0f, -1.0f, 0.0f));
             else Bounce(new Vector3(0.0f, 1.0f, 0.0f));
         }
-        if (Input.GetKeyDown("return"))
-        {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-            anim.SetTrigger(deadHash);
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.useGravity = true;
-        }
     }
 
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
     void OnCollisionEnter(Collision collision)
     {
-        Bounce(collision.contacts[0].normal);
+        if (collision.gameObject.tag == "Spikes")
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            anim.SetTrigger(deadHash);
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+            rb.velocity = new Vector3(0.0f, 0.0f, -2.0f);
+            deadScript.enabled = true;
+        }
+        else {
+            Bounce(collision.contacts[0].normal);
+        }
     }
 
     private void Bounce(Vector3 normal)
