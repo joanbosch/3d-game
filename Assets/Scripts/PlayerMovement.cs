@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Bounce(Vector3 normal)
     {
-        anim.SetTrigger(bounceHash);
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("bouncingVer")) anim.SetTrigger(bounceHash);
         float vel = lastDirection.magnitude;
         Vector3 newDirection = Vector3.Reflect(lastDirection.normalized, normal);
         rb.velocity = newDirection * speed;
