@@ -88,7 +88,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294656270259817874}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: de61c1bc9fdecde4691a657e01bf327c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -199,7 +199,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298647671860837216}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: de61c1bc9fdecde4691a657e01bf327c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -310,7 +310,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2710825695158197754}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: de61c1bc9fdecde4691a657e01bf327c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -421,7 +421,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6337848142177368384}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: de61c1bc9fdecde4691a657e01bf327c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -532,7 +532,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6849010531185419465}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: de61c1bc9fdecde4691a657e01bf327c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -565,8 +565,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7679514288211489226}
   m_Layer: 0
-  m_Name: Meteor1
-  m_TagString: Untagged
+  m_Name: MeteorCracked
+  m_TagString: MeteorCracked
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -679,7 +679,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7742382814194397753}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: de61c1bc9fdecde4691a657e01bf327c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4

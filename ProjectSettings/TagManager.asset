@@ -8,6 +8,7 @@ TagManager:
   - Spikes
   - Trace
   - SnakePoint
+  - MeteorCracked
   layers:
   - Default
   - TransparentFX

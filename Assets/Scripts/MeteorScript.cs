@@ -17,9 +17,9 @@ public class MeteorScript : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.name == "Player")
         {
             script.addMeteor();
             Destroy(gameObject);

@@ -33,13 +33,32 @@ public class LockedDoorScript : MonoBehaviour
     void StaticFragments(ref GameObject go, bool b) {
         for(int i = 0; i< 6; ++i) { 
             Rigidbody rb = go.transform.GetChild(i).gameObject.GetComponent<Rigidbody>();
-            if (true) rb.constraints = RigidbodyConstraints.FreezePosition;
+            Physics.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider>(), go.transform.GetChild(i).gameObject.GetComponent<MeshCollider>());
+            if (b) rb.constraints = RigidbodyConstraints.FreezePosition;
             else rb.constraints = RigidbodyConstraints.None;
         }
     }
 
     public void addMeteor() {
         meteors[num_meteors].active = true;
+        if (num_meteors == 2) {
+            Collider c = GetComponent<Collider>();
+            c.isTrigger = true;
+        }
         if (num_meteors < 3) ++num_meteors;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger!");
+        if (other.gameObject.name == "Player")
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject go = meteors[i];
+                StaticFragments(ref go, false);
+            }
+            Destroy(gameObject);
+        }
     }
 }
