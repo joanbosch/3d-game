@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     //dead script
     private TimeToReappear deadScript;
 
+    // Snake Script:
+    private SnakeMecanisim snakeScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             rb.velocity = new Vector3(0.0f, 0.0f, -2.0f);
             deadScript.enabled = true;
+            SnakeMecanisim sm = GetComponent<SnakeMecanisim>();
+            sm.resetSnakeMode();
         }
         else {
             Bounce(collision.contacts[0].normal);
