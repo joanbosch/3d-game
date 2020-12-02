@@ -6,11 +6,13 @@ public class TimeToReappear : MonoBehaviour
 {
     public float timeToReappear = 4.0f;
     private Rigidbody rb;
+    private PlayerMovement pm;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        pm = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,8 @@ public class TimeToReappear : MonoBehaviour
             // 1 second to start moving
             if (timeToReappear <= -1.0f)
             {
-                rb.velocity = new Vector3(1.0f, 1.0f, 0.0f);
+                pm.resetVelocity();
+                pm.resetDie();
                 timeToReappear = 4.0f;
                 this.enabled = false;
             }
