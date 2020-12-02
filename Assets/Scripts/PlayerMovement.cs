@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     //dead script
     private TimeToReappear deadScript;
 
+    // Snake Script:
+    private SnakeMecanisim snakeScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,13 +46,15 @@ public class PlayerMovement : MonoBehaviour
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Spikes")
+        if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Trace")
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
             anim.SetTrigger(deadHash);
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             rb.velocity = new Vector3(0.0f, 0.0f, -2.0f);
             deadScript.enabled = true;
+            SnakeMecanisim sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
+            sm.resetSnakeMode();
         }
         else {
             Bounce(collision.contacts[0].normal);
