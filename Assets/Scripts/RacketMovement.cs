@@ -12,7 +12,8 @@ public class RacketMovement : MonoBehaviour
     public float searchSpeed = 1.5f;
 
     private GameObject player;
-    public float racketControlDistance = 1.5f;
+    public float racketControlDistance = 1f;
+    private float yRcketNoise = 0.2f;
     private bool detected = false;
 
 
@@ -50,7 +51,8 @@ public class RacketMovement : MonoBehaviour
             // Debug.Log("yPLAYER = " + yPlayer);
             float yRacket = GetComponent<Transform>().position.y;
             // Debug.Log("yRACKET = " + yRacket);
-            if (yPlayer < yRacket)
+            if(yPlayer >= (yRacket - yRcketNoise) && (yPlayer <= (yRacket + yRcketNoise))) rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            else if (yPlayer < yRacket)
             {
                 // Debug.Log("GO UP!");
                 rb.velocity = new Vector3(0.0f, -searchSpeed, 0.0f);
