@@ -79,9 +79,10 @@ public class SnakeMecanisim : MonoBehaviour
         c.transform.localScale = new Vector3(traceSize, traceSize, dist + traceSize);
     }
 
-    void enableSnakeMode() {
+    public void enableSnakeMode() {
         SnakeMode = true;
-        
+        newTrail();
+
     }
 
     public void resetSnakeMode() {

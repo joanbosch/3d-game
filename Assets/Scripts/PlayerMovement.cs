@@ -46,14 +46,15 @@ public class PlayerMovement : MonoBehaviour
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Spikes")
+        Debug.Log("COLLISION!");
+        if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Trace")
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
             anim.SetTrigger(deadHash);
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             rb.velocity = new Vector3(0.0f, 0.0f, -2.0f);
             deadScript.enabled = true;
-            SnakeMecanisim sm = GetComponent<SnakeMecanisim>();
+            SnakeMecanisim sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
             sm.resetSnakeMode();
         }
         else {

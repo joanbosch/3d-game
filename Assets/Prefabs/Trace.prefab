@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 428677241667176725}
   m_Layer: 0
   m_Name: Trace
-  m_TagString: Untagged
+  m_TagString: Trace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
