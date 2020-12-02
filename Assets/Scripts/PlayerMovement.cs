@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public float speed = 1.0f;
 
+    // Is the player in horitzontal Rope?
+    private bool hRope = false;
+
     //animation
     Animator anim;
     bool die = false;
@@ -50,8 +53,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            if (rb.velocity.y > 0) Bounce(new Vector3(0.0f, -1.0f, 0.0f));
-            else Bounce(new Vector3(0.0f, 1.0f, 0.0f));
+            if (!hRope)
+            {
+                if (rb.velocity.y > 0) Bounce(new Vector3(0.0f, -1.0f, 0.0f));
+                else Bounce(new Vector3(0.0f, 1.0f, 0.0f));
+            } else
+            {
+                if (rb.velocity.y > 0) Bounce(new Vector3(-1.0f, 0.0f, 0.0f));
+                else Bounce(new Vector3(1.0f, 0.0f, 0.0f));
+            }
         }
     }
 
@@ -84,4 +94,7 @@ public class PlayerMovement : MonoBehaviour
     public void resetVelocity() { rb.velocity = initialDirection; }
 
     public void resetDie() { die = false; }
+
+    public void sethRope() { hRope = true; }
+    public void resethRope() { hRope = false; }
 }
