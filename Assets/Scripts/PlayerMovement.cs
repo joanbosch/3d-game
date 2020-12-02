@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     //animation
     Animator anim;
+    bool die = false;
     int bounceHash = Animator.StringToHash("bounce");
     int deadHash = Animator.StringToHash("playerDead");
 
@@ -24,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = initialDirection;
+        initialDirection = initialDirection.normalized * speed;
+        resetVelocity();
         anim = GetComponent<Animator>();
 
         deadScript = GetComponent<TimeToReappear>();
@@ -34,6 +36,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((Mathf.Abs(rb.velocity.x) != initialDirection.x) || (Mathf.Abs(rb.velocity.y) != initialDirection.y) && !die) 
+        {
+            float x_mult = 1;
+            float y_mult = 1;
+            if (rb.velocity.x < 0f) { x_mult = -1.0f; }
+            if (rb.velocity.y < 0f) { y_mult = -1.0f; }
+            rb.velocity = new Vector3(initialDirection.x * x_mult, initialDirection.y * y_mult, 0.0f);
+        }
+        if (die) { rb.velocity = new Vector3(0.0f, 0.0f, -2.0f); }
+
         lastDirection = rb.velocity;
 
         if (Input.GetKeyDown("space"))
@@ -48,10 +60,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Trace")
         {
+            die = true;
             rb.constraints = RigidbodyConstraints.FreezeAll;
             anim.SetTrigger(deadHash);
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-            rb.velocity = new Vector3(0.0f, 0.0f, -2.0f);
             deadScript.enabled = true;
             SnakeMecanisim sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
             sm.resetSnakeMode();
@@ -66,6 +78,10 @@ public class PlayerMovement : MonoBehaviour
         anim.SetTrigger(bounceHash);
         float vel = lastDirection.magnitude;
         Vector3 newDirection = Vector3.Reflect(lastDirection.normalized, normal);
-        rb.velocity = newDirection.normalized * speed;
+        rb.velocity = newDirection * speed;
     }
+
+    public void resetVelocity() { rb.velocity = initialDirection; }
+
+    public void resetDie() { die = false; }
 }
