@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7239802776351186494}
   - component: {fileID: 6151152266011196074}
   - component: {fileID: 3610183097937605710}
+  - component: {fileID: -4992594599886917876}
   m_Layer: 0
   m_Name: LockedDoor
   m_TagString: Untagged
@@ -93,3 +94,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.4, y: 10.2, z: 4}
   m_Center: {x: 0, y: 5.1, z: 0}
+--- !u!114 &-4992594599886917876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3610183097937605711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0503e73750c015b47927c43f0cc95aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meteor: {fileID: 7050610763480804208, guid: ab9c61214be260a46b8910fbaa7d0f6d, type: 3}
