@@ -10,9 +10,16 @@ public class ButtonScript : MonoBehaviour
 
     List<Vector3> positions;
     List<bool> skipeEnabled;
+
+    //Button animations
+    int press = Animator.StringToHash("Armature|pressing");
+    int pressed = Animator.StringToHash("Armature|pressed");
+    int release = Animator.StringToHash("Armature|unpressing");
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         initPositions();
         initScene();
     }
@@ -31,6 +38,15 @@ public class ButtonScript : MonoBehaviour
             else placeholders[i].active = false;
         }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            switchSpikes();
+        }
+    }
+
     void initPositions()
     {
         positions = new List<Vector3>();
@@ -71,6 +87,7 @@ public class ButtonScript : MonoBehaviour
 
     public void switchSpikes()
     {
+        anim.SetTrigger(press);
         for (int i = 0; i < skipeEnabled.Count; ++i) skipeEnabled[i] = !skipeEnabled[i];
     }
 }
