@@ -12,9 +12,8 @@ public class ButtonScript : MonoBehaviour
     List<bool> skipeEnabled;
 
     //Button animations
-    int press = Animator.StringToHash("Armature|pressing");
-    int pressed = Animator.StringToHash("Armature|pressed");
-    int release = Animator.StringToHash("Armature|unpressing");
+    int press = Animator.StringToHash("press");
+    int release = Animator.StringToHash("unpress");
     Animator anim;
     // Start is called before the first frame update
     void Start()
