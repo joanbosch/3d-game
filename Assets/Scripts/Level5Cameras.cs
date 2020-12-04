@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level5Cameras : MonoBehaviour
 {
-    private int cameraState = 1; // cameraState = 0 --> Follow the player!
+    private int cameraState = 1; // 
     List<Vector3> cameras;
     private GameObject Player;
 
@@ -125,7 +125,7 @@ public class Level5Cameras : MonoBehaviour
             if (y <= -1.68f) return 3;
             else if (y >= 4.5f) return 8;
             else if (x <= 0f) return 1;
-            else if (x >= 5.1f) return 11; // INSIDE PIPE!
+            else if (x >= 5.1f) return 11;
             else return 2;
         }
 
@@ -154,8 +154,8 @@ public class Level5Cameras : MonoBehaviour
         {
             if (y <= -2.05) return 5;
             else if (x >= 19.8f) return 7;
-            else if (x <= 13.3f) return 11;// TODO: CAMERA FOLLOW THE PLAYER TRHOW THE PIPE!
-            else if (y >= 4.25f) return 12; // TODO: PIPES!!
+            else if (x <= 13.3f) return 11;
+            else if (y >= 4.25f) return 12;
             else return 6;
         }
 
@@ -180,7 +180,7 @@ public class Level5Cameras : MonoBehaviour
         else if (cameraState == 10)
         {
             if (x <= 10.1f) return 9;
-            else if (y <= 9.5f) return 12; // TODO: PIPES!!
+            else if (y <= 9.5f) return 12;
             return 10;
         }
 

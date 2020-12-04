@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 248476003873576883}
   - component: {fileID: 3627501868880818983}
   - component: {fileID: 4326848029643972698}
-  - component: {fileID: -7014723964242033695}
   m_Layer: 0
   m_Name: SnakeDoor5
   m_TagString: Untagged
@@ -94,15 +93,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.4, y: 6.1, z: 3.5}
   m_Center: {x: 0, y: 3.05, z: 0.049999952}
---- !u!114 &-7014723964242033695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6130458720689978818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd391749cae72e5409768c5a33678e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
