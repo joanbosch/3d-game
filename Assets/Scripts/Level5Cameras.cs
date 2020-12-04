@@ -12,13 +12,22 @@ public class Level5Cameras : MonoBehaviour
     private bool firstIt;
     private bool movingCamera;
     private float elapsedTime;
-    public float transitionTime = 0.2f; // Time in seconds
-    public int lastCameraState = 1;
+    public float transitionTime = 1f; // Time in seconds
+    private int lastCameraState = 1;
+    private Vector3 lastCameraPos;
+
+
+    // Smooth transition of the z component inside pipes!
+    private bool firstItPipes;
+    private bool movingCameraPipes;
+    private float elapsedTimePipes;
+    public float transitionTimePipes = 0.6f; // Time in seconds
 
     // Start is called before the first frame update
     void Start()
     {
         setUpMovingCamera();
+        setUpMovingPipesCamera();
         cameras = new List<Vector3>();
         cameras.Add(new Vector3(-1.97f, 0.96f, -5.5f)); // FOV: 60
         cameras.Add(new Vector3(2.61f, 1.52f, -6.26f)); // FOV: 60
@@ -40,20 +49,45 @@ public class Level5Cameras : MonoBehaviour
     {
         if (movingCamera)
         {
-            moveCameraTo(cameras[lastCameraState-1], cameras[cameraState - 1]);
+            moveCameraTo(lastCameraPos, cameras[cameraState - 1]);
         }
         else
         {
             int nextCameraState = nextState(Player.transform.position, cameraState);
+            if (cameraState == 11 || cameraState == 12 || cameraState == 8) followPlayer(lastCameraPos, new Vector3(Player.transform.position.x, Player.transform.position.y, -4f));
             if (cameraState != nextCameraState)
             {
+                if ((nextCameraState == 11) || (nextCameraState == 12) || (nextCameraState == 8)) { setUpMovingPipesCamera(); }
+                else movingCamera = true;
                 lastCameraState = cameraState;
+                lastCameraPos = gameObject.transform.position;
                 cameraState = nextCameraState;
-                movingCamera = true;
+
             }
         }
         
     }
+
+    private void setUpMovingPipesCamera()
+    {
+        firstItPipes = true;
+        movingCameraPipes = false;
+        elapsedTimePipes = 0f;
+    }
+
+    private void followPlayer(Vector3 from, Vector3 to)
+    {
+        if (!firstItPipes) elapsedTimePipes += Time.deltaTime;
+        else firstItPipes = false;
+
+        float t = elapsedTimePipes / transitionTimePipes;
+        if (t > 1.0f) t = 1.0f;
+        Debug.Log(t);
+            
+        gameObject.transform.position = Vector3.Lerp(from, to, t);
+
+    }
+
     private void setUpMovingCamera()
     {
         movingCamera = false;
@@ -80,73 +114,88 @@ public class Level5Cameras : MonoBehaviour
     {
         float x = playerPos.x;
         float y = playerPos.y;
-        if(cameraState == 1)
+        if (cameraState == 1)
         {
             if (x >= 0f) return 2;
             else return 1;
         }
 
-        else if(cameraState == 2)
+        else if (cameraState == 2)
         {
             if (y <= -1.68f) return 3;
             else if (y >= 4.5f) return 8;
             else if (x <= 0f) return 1;
-            else if (x >= 5.1f) return 6; // INSIDE PIPE!
+            else if (x >= 5.1f) return 11; // INSIDE PIPE!
             else return 2;
         }
 
-        else if(cameraState == 3)
+        else if (cameraState == 3)
         {
             if (y >= -1.68f) return 2;
             else if (x >= 5.85f) return 4;
             else return 3;
         }
 
-        else if(cameraState == 4)
+        else if (cameraState == 4)
         {
             if (x <= 5.85f) return 3;
-            else if (x >= 10.2f) return 5;
+            else if (x >= 13.2f) return 5;
             else return 4;
         }
 
-        else if(cameraState == 5)
+        else if (cameraState == 5)
         {
-            if (x <= 10.2f) return 4;
+            if (x <= 13.2f) return 4;
             else if (y >= -2.05) return 6;
             else return 5;
         }
 
-        else if(cameraState == 6)
+        else if (cameraState == 6)
         {
             if (y <= -2.05) return 5;
             else if (x >= 19.8f) return 7;
-            else if (x <= 13.3f) return 2;// TODO: CAMERA FOLLOW THE PLAYER TRHOW THE PIPE!
-            else if (y >= 4.25f) return 10; // TODO: PIPES!!
+            else if (x <= 13.3f) return 11;// TODO: CAMERA FOLLOW THE PLAYER TRHOW THE PIPE!
+            else if (y >= 4.25f) return 12; // TODO: PIPES!!
             else return 6;
         }
 
-        else if(cameraState == 7)
+        else if (cameraState == 7)
         {
             if (x <= 19.8f) return 6;
             else return 7;
         }
 
-        else if(cameraState == 8)
+        else if (cameraState == 8)
         {
             if (y <= 4.5f) return 2;
             else if (y >= 10.6f) return 9;
             else return 8;
         }
-        else if( cameraState == 9)
+        else if (cameraState == 9)
         {
             if ((x <= 3.7) && (y <= 10.6f)) return 8;
-            else if (x >= 14.1f) return 10;
+            else if (x >= 10.1f) return 10;
             else return 9;
         }
-        else if(cameraState == 10)
+        else if (cameraState == 10)
         {
-            if (x >= 14.1f) return 9;
-            else if (y >= 9f) return 6; // TODO: PIPES!!
+            if (x <= 10.1f) return 9;
+            else if (y <= 9.5f) return 12; // TODO: PIPES!!
+            return 10;
+        }
+
+        else if (cameraState == 11)
+        {
+            if (x <= 4.9f) return 2;
+            else if (x >= 13.9f) return 6;
+            else return 11;
+        }
+
+        else if (cameraState == 12)
+        {
+            if (y >= 9) return 10;
+            else if (y <= 4.25) return 6;
+            else return 12;
         }
 
         return 0;
