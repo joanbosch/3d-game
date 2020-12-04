@@ -8,9 +8,17 @@ public class Level5Cameras : MonoBehaviour
     List<Vector3> cameras;
     private GameObject Player;
 
+    // Smooth moving camera variables
+    private bool firstIt;
+    private bool movingCamera;
+    private float elapsedTime;
+    public float transitionTime = 0.2f; // Time in seconds
+    public int lastCameraState = 1;
+
     // Start is called before the first frame update
     void Start()
     {
+        setUpMovingCamera();
         cameras = new List<Vector3>();
         cameras.Add(new Vector3(-1.97f, 0.96f, -5.5f)); // FOV: 60
         cameras.Add(new Vector3(2.61f, 1.52f, -6.26f)); // FOV: 60
@@ -30,18 +38,42 @@ public class Level5Cameras : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        int nextCameraState = nextState(Player.transform.position, cameraState);
-        if (cameraState != nextCameraState) {
-            cameraState = nextCameraState;
-            Debug.Log("         Next Camera Pos: " + cameras[(nextCameraState - 1)]);
-            gameObject.transform.position = cameras[(nextCameraState-1)];
+        if (movingCamera)
+        {
+            moveCameraTo(cameras[lastCameraState-1], cameras[cameraState - 1]);
         }
-        //if (Player.transform.position.x > 0)
-        //{
-        //    InitialCamera.SetActive(false);
-        //    Camera2.SetActive(true);
-        //}
+        else
+        {
+            int nextCameraState = nextState(Player.transform.position, cameraState);
+            if (cameraState != nextCameraState)
+            {
+                lastCameraState = cameraState;
+                cameraState = nextCameraState;
+                movingCamera = true;
+            }
+        }
+        
+    }
+    private void setUpMovingCamera()
+    {
+        movingCamera = false;
+        firstIt = true;
+        elapsedTime = 0f;
+    }
+
+    private void moveCameraTo(Vector3 from, Vector3 to)
+    {
+        if (!firstIt) elapsedTime += Time.deltaTime;
+        else firstIt = false;
+
+        float t = elapsedTime / transitionTime;
+        if (t >= 1f)
+        {
+            t = 1f;
+            setUpMovingCamera();
+        }
+
+        gameObject.transform.position = Vector3.Lerp(from, to, t);
     }
 
     private int nextState(Vector3 playerPos, int cameraState)
