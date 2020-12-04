@@ -23,5 +23,10 @@ public class EnableSnakeMode : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void reActive()
+    {
+        gameObject.SetActive(true);
+    }
+
 
 }
