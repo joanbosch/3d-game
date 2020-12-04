@@ -49,6 +49,7 @@ public class ButtonScriptLvl5 : MonoBehaviour
     void initPositions()
     {
         positions = new List<Vector3>();
+        // Positions must be mesured using Spikes.
         positions.Add(new Vector3(-3.6f, 1.8f, 0.0f));
         positions.Add(new Vector3(-3.6f, 0.608f, 0.0f));
         positions.Add(new Vector3(-3.6f, 1.212f, 0.0f));
@@ -56,9 +57,9 @@ public class ButtonScriptLvl5 : MonoBehaviour
         positions.Add(new Vector3(2.67f, 4.128f, 0.0f));
         positions.Add(new Vector3(3.129f, 4.128f, 0.0f));
 
-        positions.Add(new Vector3(2.2922f, 0.091f, 0.0f));
-        positions.Add(new Vector3(2.2922f, 0.616f, 0.0f));
-        positions.Add(new Vector3(2.2922f, -0.432f, 0.0f));
+        positions.Add(new Vector3(2.2922f, 0.291f, 0.0f));
+        positions.Add(new Vector3(2.2922f, 0.816f, 0.0f));
+        positions.Add(new Vector3(2.2922f, -0.232f, 0.0f));
 
         positions.Add(new Vector3(9.39f, 0.536f, 0.0f));
         positions.Add(new Vector3(9.36f, 0.03f, 0.0f));
@@ -108,8 +109,8 @@ public class ButtonScriptLvl5 : MonoBehaviour
             if (skipeEnabled[i]) go.active = false;
             spikes.Add(go);
 
-            //Adding Meteors
-            go = Instantiate(placeholder, positions[i], transform.rotation);
+            //Adding Placeholders
+            go = Instantiate(placeholder, new Vector3(positions[i].x-0.2f, positions[i].y, positions[i].z), transform.rotation);
             if (!skipeEnabled[1]) go.active = false;
             placeholders.Add(go);
         }

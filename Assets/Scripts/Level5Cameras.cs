@@ -23,6 +23,10 @@ public class Level5Cameras : MonoBehaviour
     private float elapsedTimePipes;
     public float transitionTimePipes = 0.6f; // Time in seconds
 
+    // Smooth transition to move the camera to the origin of the game.
+    private bool cameraToOrigin;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +46,9 @@ public class Level5Cameras : MonoBehaviour
         Player = GameObject.Find("Player");
         cameraState = 1;
         gameObject.transform.position = cameras[0];
+
+        // Move camera to origin variables
+        cameraToOrigin = false;
     }
 
     // Update is called once per frame
@@ -50,6 +57,11 @@ public class Level5Cameras : MonoBehaviour
         if (movingCamera)
         {
             moveCameraTo(lastCameraPos, cameras[cameraState - 1]);
+        } else if (cameraToOrigin)
+        {
+            // The origin game must be in the first position of the cameras array!
+
+            moveCameraTo(lastCameraPos, cameras[0]);
         }
         else
         {
@@ -91,6 +103,7 @@ public class Level5Cameras : MonoBehaviour
     private void setUpMovingCamera()
     {
         movingCamera = false;
+        cameraToOrigin = false;
         firstIt = true;
         elapsedTime = 0f;
     }
@@ -108,6 +121,11 @@ public class Level5Cameras : MonoBehaviour
         }
 
         gameObject.transform.position = Vector3.Lerp(from, to, t);
+    }
+
+    public void moveCameraToOrigin() {
+        cameraToOrigin = true;
+        cameraState = 1;
     }
 
     private int nextState(Vector3 playerPos, int cameraState)
