@@ -26,6 +26,8 @@ public class Level5Cameras : MonoBehaviour
     // Smooth transition to move the camera to the origin of the game.
     private bool cameraToOrigin;
 
+    // ReEnable the Snake Mode
+    private EnableSnakeMode sm;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,9 @@ public class Level5Cameras : MonoBehaviour
 
         // Move camera to origin variables
         cameraToOrigin = false;
+
+        // If the camera is reset, reset the snake mode.
+        sm = GameObject.Find("Snake5").GetComponent<EnableSnakeMode>();
     }
 
     // Update is called once per frame
@@ -126,6 +131,7 @@ public class Level5Cameras : MonoBehaviour
     public void moveCameraToOrigin() {
         cameraToOrigin = true;
         cameraState = 1;
+        sm.reActive();
     }
 
     private int nextState(Vector3 playerPos, int cameraState)

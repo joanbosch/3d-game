@@ -11,14 +11,13 @@ public class TimeToReappear : MonoBehaviour
     private bool calledToMoveCamera = false;
 
     private Level5Cameras cs;
-    private EnableSnakeMode sm;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         pm = GameObject.Find("Player").GetComponent<PlayerMovement>();
         cs = GameObject.Find("Camera").GetComponent<Level5Cameras>();
-        sm = GameObject.Find("Snake5").GetComponent<EnableSnakeMode>();
+        
     }
 
     // Update is called once per frame
@@ -41,7 +40,6 @@ public class TimeToReappear : MonoBehaviour
             // 1 second to start moving
             if (timeToReappear <= -1.0f)
             {
-                sm.reActive();
                 pm.resetVelocity();
                 pm.resetDie();
                 timeToReappear = 4.0f;
