@@ -19,7 +19,7 @@ public class TimeToReappear : MonoBehaviour
         cs = GameObject.Find("Camera").GetComponent<Level5Cameras>();
         //if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level4Cameras>();
         //if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level3Cameras>();
-        //if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level2Cameras>();
+        if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level2Cameras>();
         if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level1Cameras>();
     }
 
