@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     // Snake Script:
     private SnakeMecanisim snakeScript;
 
+    //particles
+    private ParticleSystem jumpPart;
+    private ParticleSystem bloodPart;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
         initialDirection = initialDirection.normalized * speed;
         resetVelocity();
         anim = GetComponent<Animator>();
+        jumpPart = GetSystem("AirJumpParticles");
+        bloodPart = GetSystem("BloodParticles");
 
         deadScript = GetComponent<TimeToReappear>();
         deadScript.enabled = false;
@@ -55,12 +61,36 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!hRope)
             {
-                if (rb.velocity.y > 0) Bounce(new Vector3(0.0f, -1.0f, 0.0f));
-                else Bounce(new Vector3(0.0f, 1.0f, 0.0f));
+                if (rb.velocity.y > 0)
+                {
+                    Bounce(new Vector3(0.0f, -1.0f, 0.0f));
+                    var emitParams = new ParticleSystem.EmitParams();
+                    emitParams.velocity = -rb.velocity;
+                    jumpPart.Emit(emitParams, 3);
+                }
+                else
+                {
+                    Bounce(new Vector3(0.0f, 1.0f, 0.0f));
+                    var emitParams = new ParticleSystem.EmitParams();
+                    emitParams.velocity = -rb.velocity;
+                    jumpPart.Emit(emitParams, 3);
+                }
             } else
             {
-                if (rb.velocity.y > 0) Bounce(new Vector3(-1.0f, 0.0f, 0.0f));
-                else Bounce(new Vector3(1.0f, 0.0f, 0.0f));
+                if (rb.velocity.y > 0)
+                {
+                    Bounce(new Vector3(-1.0f, 0.0f, 0.0f));
+                    var emitParams = new ParticleSystem.EmitParams();
+                    emitParams.velocity = -rb.velocity;
+                    jumpPart.Emit(emitParams, 3);
+                }
+                else
+                {
+                    Bounce(new Vector3(1.0f, 0.0f, 0.0f));
+                    var emitParams = new ParticleSystem.EmitParams();
+                    emitParams.velocity = -rb.velocity;
+                    jumpPart.Emit(emitParams, 3);
+                }
             }
         }
     }
@@ -71,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Trace")
         {
             die = true;
+            bloodPart.Emit(10);
             rb.constraints = RigidbodyConstraints.FreezeAll;
             anim.SetTrigger(deadHash);
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
@@ -97,4 +128,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void sethRope() { hRope = true; }
     public void resethRope() { hRope = false; }
+
+    // to get specific particle system
+    private ParticleSystem GetSystem(string systemName)
+    {
+        Component[] children = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem childParticleSystem in children)
+        {
+            if (childParticleSystem.name == systemName)
+            {
+                return childParticleSystem;
+            }
+        }
+        return null;
+    }
 }

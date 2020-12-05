@@ -2170,17 +2170,17 @@ PrefabInstance:
     - target: {fileID: 522495878225761383, guid: 00af913badc9cda49a99eda26f321893,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 522495878225761383, guid: 00af913badc9cda49a99eda26f321893,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 522495878225761383, guid: 00af913badc9cda49a99eda26f321893,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 522495878225761383, guid: 00af913badc9cda49a99eda26f321893,
         type: 3}
@@ -2267,6 +2267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: traceSize
       value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034945180405887730, guid: 00af913badc9cda49a99eda26f321893,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 5321181558867278973, guid: 00af913badc9cda49a99eda26f321893,
         type: 3}
