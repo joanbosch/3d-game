@@ -16,6 +16,10 @@ public class RacketMovement : MonoBehaviour
     private float yRcketNoise = 0.2f;
     private bool detected = false;
 
+    // particle systems
+    private ParticleSystem topPart;
+    private ParticleSystem bottomPart;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +31,8 @@ public class RacketMovement : MonoBehaviour
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody>();
 
-
+        topPart = GetSystem("TopParticles");
+        bottomPart = GetSystem("BottomParticles");
     }
 
     // Update is called once per frame
@@ -75,8 +80,22 @@ public class RacketMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-            if (!detected) rb.velocity = setNormalizedVelocity(collision.contacts[0].normal.y);
-            else lastDirection = setNormalizedVelocity(collision.contacts[0].normal.y);
+            if (!detected)
+            {
+                rb.velocity = setNormalizedVelocity(collision.contacts[0].normal.y);
+                // check direction of racket
+                if (rb.velocity.y > 0.0) bottomPart.Emit(2);
+                else topPart.Emit(2);
+            }
+            else
+            {
+                lastDirection = setNormalizedVelocity(collision.contacts[0].normal.y);
+                // check direction of racket
+                if (lastDirection.y > 0.0) bottomPart.Emit(2);
+                else topPart.Emit(2);
+            }
+
+            
         }
         else if (collision.gameObject.tag == "Player") {
             rb.velocity = setNormalizedVelocity(rb.velocity.y);
@@ -91,5 +110,19 @@ public class RacketMovement : MonoBehaviour
     {
         if (y > 0) return new Vector3(0.0f, 1.0f, 0.0f);
         else return new Vector3(0.0f, -1.0f, 0.0f);
+    }
+
+    // to get specific particle system
+    private ParticleSystem GetSystem(string systemName)
+    {
+        Component[] children = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem childParticleSystem in children)
+        {
+            if (childParticleSystem.name == systemName)
+            {
+                return childParticleSystem;
+            }
+        }
+        return null;
     }
 }
