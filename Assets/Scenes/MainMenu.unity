@@ -1141,7 +1141,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: game design inspired by
+  m_Text: game design inspired in
 --- !u!222 &610171137
 CanvasRenderer:
   m_ObjectHideFlags: 0
