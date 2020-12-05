@@ -291,6 +291,11 @@ PrefabInstance:
       propertyPath: speed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8037425997695510773, guid: 00af913badc9cda49a99eda26f321893,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28c9ec9a9b327914caa2f536a3a4b704, type: 2}
     m_RemovedComponents:
     - {fileID: 5321181558867278973, guid: 00af913badc9cda49a99eda26f321893, type: 3}
     - {fileID: 3648949192021414342, guid: 00af913badc9cda49a99eda26f321893, type: 3}
@@ -722,7 +727,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: pink was ejected.
+  m_Text: red was ejected.
 --- !u!222 &1276602818
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -24,7 +24,8 @@ public class TextWriter : MonoBehaviour
         writing = false;
         charInd = 0;
         audioManager = GetComponent<AudioSource>();
-        textToWrite = "pink was ejected.";
+        textToWrite = UImessage.text;
+        UImessage.text = "";
     }
 
     // Update is called once per frame
