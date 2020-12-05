@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonScriptLvl5 : MonoBehaviour
 {
     public GameObject spike, placeholder;
+    private bool pressed;
     List<GameObject> spikes;
     List<GameObject> placeholders;
 
@@ -18,6 +19,7 @@ public class ButtonScriptLvl5 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pressed = false;
         anim = GetComponent<Animator>();
         initPositions();
         initScene();
@@ -118,7 +120,9 @@ public class ButtonScriptLvl5 : MonoBehaviour
 
     public void switchSpikes()
     {
-        anim.SetTrigger(press);
+        if (pressed) anim.SetTrigger(release);
+        else anim.SetTrigger(press);
+        pressed = !pressed;
         for (int i = 0; i < skipeEnabled.Count; ++i) skipeEnabled[i] = !skipeEnabled[i];
     }
 }
