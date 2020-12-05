@@ -80,6 +80,9 @@ public class RacketMovement : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player") {
             rb.velocity = setNormalizedVelocity(rb.velocity.y);
+        } else if (collision.gameObject.tag == "Trace")
+        {
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
         }
         //rb.velocity = direction;
     }
