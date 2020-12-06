@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level4Cameras : MonoBehaviour
+public class Level4Cameras : CamerasScript
 {
     private int cameraState = 1; // 
     List<Vector3> cameras;
@@ -127,7 +127,7 @@ public class Level4Cameras : MonoBehaviour
         gameObject.transform.position = Vector3.Lerp(from, to, t);
     }
 
-    public void moveCameraToOrigin() {
+    public override void moveCameraToOrigin() {
         cameraToOrigin = true;
         cameraState = 1;
         sm.reActive();
