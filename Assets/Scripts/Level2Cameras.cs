@@ -58,6 +58,10 @@ public class Level2Cameras : CamerasScript
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("escape"))
+        {
+            this.returnMainMenu();
+        }
         if (movingCamera)
         {
             moveCameraTo(lastCameraPos, cameras[cameraState - 1]);

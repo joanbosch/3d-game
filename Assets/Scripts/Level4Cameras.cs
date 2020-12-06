@@ -58,7 +58,11 @@ public class Level4Cameras : CamerasScript
     // Update is called once per frame
     void Update()
     {
-        if (movingCamera)
+        if (Input.GetKeyDown("escape"))
+        {
+            this.returnMainMenu();
+        }
+            if (movingCamera)
         {
             moveCameraTo(lastCameraPos, cameras[cameraState - 1]);
         } else if (cameraToOrigin)
@@ -205,4 +209,5 @@ public class Level4Cameras : CamerasScript
 
         return 0;
     }
+
 }
