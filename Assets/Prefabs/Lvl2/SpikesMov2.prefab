@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: -7693936187400603705}
   m_Layer: 0
   m_Name: SpikesMov2
-  m_TagString: Spikes
+  m_TagString: MovingSpikes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
