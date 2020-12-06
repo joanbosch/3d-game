@@ -52,7 +52,7 @@ public class Level4Cameras : MonoBehaviour
         cameraToOrigin = false;
 
         // If the camera is reset, reset the snake mode.
-        sm = GameObject.Find("Snake5").GetComponent<EnableSnakeMode>();
+        sm = GameObject.Find("Snake4").GetComponent<EnableSnakeMode>();
     }
 
     // Update is called once per frame

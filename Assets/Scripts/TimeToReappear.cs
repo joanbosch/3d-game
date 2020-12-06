@@ -10,13 +10,13 @@ public class TimeToReappear : MonoBehaviour
     public Vector3 initialPosition = new Vector3(0.0f, 0.0f, 0.0f);
     private bool calledToMoveCamera = false;
 
-    private Level5Cameras cs;
+    private Level4Cameras cs;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         pm = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        cs = GameObject.Find("Camera").GetComponent<Level5Cameras>();
+        cs = GameObject.Find("Camera").GetComponent<Level4Cameras>();
         
     }
 
