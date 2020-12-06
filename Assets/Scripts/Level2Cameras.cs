@@ -154,13 +154,13 @@ public class Level2Cameras : CamerasScript
         else if (cameraState == 3)
         {
             if (y >= -2.02f) return 2;
-            else if (x >= 3.08f) return 4;
+            else if (x >= 2.63f) return 4;
             else return 3;
         }
 
         else if (cameraState == 4)
         {
-            if (x <= 3.08f) return 3;
+            if (x <= 2.63f) return 3;
             else if (x >= 7.66f) return 5;
             else if (y >= -2.46f) return 10;
             else return 4;
