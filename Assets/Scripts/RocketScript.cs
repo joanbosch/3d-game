@@ -8,11 +8,19 @@ public class RocketScript : MonoBehaviour
     private float elapsedTime;
     private bool startCounter;
     public float timeToLeave = 3.0f;
+
+    // particles
+    private ParticleSystem smokePart;
+    private ParticleSystem firePart;
+
     // Start is called before the first frame update
     void Start()
     {
         elapsedTime = 0f;
         startCounter = false;
+
+        smokePart = GetSystem("SmokeParticles");
+        firePart = GetSystem("FireParticles");
     }
 
     // Update is called once per frame
@@ -29,14 +37,29 @@ public class RocketScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             elapsedTime = 0f;
             startCounter = true;
-            // TODO: SHOW ROCKET PARTICLES!!
-            other.gameObject.SetActive(false);
+            firePart.Play();
+            smokePart.Play();
+            collision.collider.gameObject.SetActive(false);
         }
+    }
+
+    // to get specific particle system
+    private ParticleSystem GetSystem(string systemName)
+    {
+        Component[] children = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem childParticleSystem in children)
+        {
+            if (childParticleSystem.name == systemName)
+            {
+                return childParticleSystem;
+            }
+        }
+        return null;
     }
 }

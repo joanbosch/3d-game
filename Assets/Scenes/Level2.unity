@@ -8650,6 +8650,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1725555763302496308, guid: 0ddebe3280f8ab447afa99235d1c56f0,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725555763302496308, guid: 0ddebe3280f8ab447afa99235d1c56f0,
+        type: 3}
+      propertyPath: SubModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2449152291403605088, guid: 0ddebe3280f8ab447afa99235d1c56f0,
         type: 3}
       propertyPath: m_Name
@@ -8723,6 +8733,16 @@ PrefabInstance:
     - target: {fileID: 6866595758006351707, guid: 0ddebe3280f8ab447afa99235d1c56f0,
         type: 3}
       propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011604883672323954, guid: 0ddebe3280f8ab447afa99235d1c56f0,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011604883672323954, guid: 0ddebe3280f8ab447afa99235d1c56f0,
+        type: 3}
+      propertyPath: startDelay.scalar
       value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
