@@ -115,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else {
             Bounce(collision.contacts[0].normal);
+            AudioManager.Play("GlassStep");
         }
     }
 
