@@ -16,9 +16,12 @@ public class ButtonScriptLvl5 : MonoBehaviour
     int press = Animator.StringToHash("press");
     int release = Animator.StringToHash("unpress");
     Animator anim;
+    // Sounds!
+    private AudioManager AudioManager;
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
         pressed = false;
         anim = GetComponent<Animator>();
         initPositions();
@@ -45,6 +48,7 @@ public class ButtonScriptLvl5 : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             switchSpikes();
+            AudioManager.Play("Button");
         }
     }
 

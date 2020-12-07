@@ -29,9 +29,14 @@ public class Level5Cameras : CamerasScript
     // ReEnable the Snake Mode
     private EnableSnakeMode sm;
 
+    // Sounds!
+    private AudioManager AudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
+        AudioManager.Play("Storage");
         setUpMovingCamera();
         setUpMovingPipesCamera();
         cameras = new List<Vector3>();

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MeteorScript : MonoBehaviour
 {
+    private AudioManager AudioManager;
     private LockedDoorScript script;
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
         script = GameObject.Find("LockedDoor").GetComponent<LockedDoorScript>();
     }
 
@@ -21,6 +23,7 @@ public class MeteorScript : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
+            AudioManager.Play("Meteor");
             script.addMeteor();
             Destroy(gameObject);
         }

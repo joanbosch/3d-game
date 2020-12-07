@@ -11,9 +11,12 @@ public class LockedDoorScript : MonoBehaviour
 
     int num_meteors;
 
+    private AudioManager AudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
         num_meteors = 0;
         meteors = new List<GameObject>();
         for (int i = 0; i < 3; i++) {
@@ -50,7 +53,6 @@ public class LockedDoorScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger!");
         if (other.gameObject.name == "Player")
         {
             for (int i = 0; i < 3; i++)
@@ -58,6 +60,7 @@ public class LockedDoorScript : MonoBehaviour
                 GameObject go = meteors[i];
                 StaticFragments(ref go, false);
             }
+            AudioManager.Play("MeteorDoor");
             Destroy(gameObject);
         }
     }
