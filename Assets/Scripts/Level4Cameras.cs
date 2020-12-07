@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level1Cameras : CamerasScript
+public class Level4Cameras : CamerasScript
 {
-    private int cameraState = 1;
+    private int cameraState = 1; // 
     List<Vector3> cameras;
     private GameObject Player;
 
@@ -27,7 +27,7 @@ public class Level1Cameras : CamerasScript
     private bool cameraToOrigin;
 
     // ReEnable the Snake Mode
-    //private EnableSnakeMode sm;
+    private EnableSnakeMode sm;
 
     // Start is called before the first frame update
     void Start()
@@ -35,15 +35,15 @@ public class Level1Cameras : CamerasScript
         setUpMovingCamera();
         setUpMovingPipesCamera();
         cameras = new List<Vector3>();
-        cameras.Add(new Vector3(-4.89f, 5.87f, -5.3f)); // FOV: 60
-        cameras.Add(new Vector3(-1.16f, 5.87f, -5.3f)); // FOV: 60
-        cameras.Add(new Vector3(-1.05f, 0.23f, -5.2f)); // FOV: 60
-        cameras.Add(new Vector3(-5.01f, 0.23f, -5.2f)); // FOV: 60
-        cameras.Add(new Vector3(-4.97f, -5.32f, -5.1f)); //FOV: 60
-        cameras.Add(new Vector3(-0.42f, -5.49f, -5.1f)); // FOV: 60
-        cameras.Add(new Vector3(5.14f, -5.02f, -5.5f)); // FOV: 60
-        cameras.Add(new Vector3(5.67f, 0.25f, -5.4f)); // FOV: 60 OK!
-        cameras.Add(new Vector3(5.67f, 5.92f, -5.3f)); // FOV: 16
+        cameras.Add(new Vector3(0f, 0f, -6f)); // 1 FOV: 60
+        cameras.Add(new Vector3(6.4f, 0f, -5.3f)); // 2 FOV: 60
+        cameras.Add(new Vector3(15.77f, -2.721f, -7.678f)); // 3 FOV: 60
+        cameras.Add(new Vector3(23.96f, -6.75f, -6.64f)); // 4 FOV: 60
+        cameras.Add(new Vector3(29.38f, -12f, -7.11f)); // 5 FOV: 60
+        cameras.Add(new Vector3(32.55f, -5.56f, -4.76f)); // 6 FOV: 60
+        cameras.Add(new Vector3(27.37f, -20.17f, -8.3f)); // 7 FOV: 60
+        cameras.Add(new Vector3(14.17f, -20.17f, -8.3f)); // 8 FOV: 60
+        cameras.Add(new Vector3(33.4f, -17.347f, -4.635f)); // 9 FOV: 60
         Player = GameObject.Find("Player");
         cameraState = 1;
         gameObject.transform.position = cameras[0];
@@ -52,7 +52,7 @@ public class Level1Cameras : CamerasScript
         cameraToOrigin = false;
 
         // If the camera is reset, reset the snake mode.
-        //sm = GameObject.Find("Snake5").GetComponent<EnableSnakeMode>();
+        sm = GameObject.Find("Snake4").GetComponent<EnableSnakeMode>();
     }
 
     // Update is called once per frame
@@ -62,11 +62,10 @@ public class Level1Cameras : CamerasScript
         {
             this.returnMainMenu();
         }
-        if (movingCamera)
+            if (movingCamera)
         {
             moveCameraTo(lastCameraPos, cameras[cameraState - 1]);
-        }
-        else if (cameraToOrigin)
+        } else if (cameraToOrigin)
         {
             // The origin game must be in the first position of the cameras array!
 
@@ -75,17 +74,18 @@ public class Level1Cameras : CamerasScript
         else
         {
             int nextCameraState = nextState(Player.transform.position, cameraState);
-            //if (cameraState == 11 || cameraState == 12 || cameraState == 8) followPlayer(lastCameraPos, new Vector3(Player.transform.position.x, Player.transform.position.y, -4f));
+            if (cameraState == 10) followPlayer(lastCameraPos, new Vector3(Player.transform.position.x, -20.17f, -8.3f));
             if (cameraState != nextCameraState)
             {
-                //if ((nextCameraState == 11) || (nextCameraState == 12) || (nextCameraState == 8)) { setUpMovingPipesCamera(); }
-                /*else */movingCamera = true;
+                if (nextCameraState == 10) { setUpMovingPipesCamera(); }
+                else movingCamera = true;
                 lastCameraState = cameraState;
                 lastCameraPos = gameObject.transform.position;
                 cameraState = nextCameraState;
 
             }
         }
+        
     }
 
     private void setUpMovingPipesCamera()
@@ -103,7 +103,7 @@ public class Level1Cameras : CamerasScript
         float t = elapsedTimePipes / transitionTimePipes;
         if (t > 1.0f) t = 1.0f;
         Debug.Log(t);
-
+            
         gameObject.transform.position = Vector3.Lerp(from, to, t);
 
     }
@@ -131,11 +131,10 @@ public class Level1Cameras : CamerasScript
         gameObject.transform.position = Vector3.Lerp(from, to, t);
     }
 
-    public override void moveCameraToOrigin()
-    {
+    public override void moveCameraToOrigin() {
         cameraToOrigin = true;
         cameraState = 1;
-        //sm.reActive();
+        sm.reActive();
     }
 
     private int nextState(Vector3 playerPos, int cameraState)
@@ -144,64 +143,71 @@ public class Level1Cameras : CamerasScript
         float y = playerPos.y;
         if (cameraState == 1)
         {
-            if (x >= -2.87f) return 2;
+            if (x >= 2.6f) return 2;
             else return 1;
         }
 
         else if (cameraState == 2)
         {
-            if (x <= -2.87f) return 1;
-            else if (y <= 2.86f) return 3;
+            if (x >= 10f) return 3;
+            else if (x <= 2.6f) return 1;
             else return 2;
         }
 
         else if (cameraState == 3)
         {
-            if (y >= 2.86f) return 2;
-            else if (x <= -2.82f) return 4;
+            if (x <= 10f) return 2;
+            else if (x >= 21.3f) return 4;
             else return 3;
         }
 
         else if (cameraState == 4)
         {
-            if (x >= -2.82f) return 3;
-            else if (y <= -2.57f) return 5;
+            if (x <= 21.3f) return 3;
+            else if (x >= 27.1f) return 5;
             else return 4;
         }
 
         else if (cameraState == 5)
         {
-            if (y >= -2.57f) return 4;
-            else if (x >= -2.97f) return 6;
+            if (x <= 27.1f) return 4;
+            else if (y >= -7.5f) return 6;
+            else if (y <= -15.5f) return 7;
             else return 5;
         }
 
         else if (cameraState == 6)
         {
-            if (x <= -2.97f) return 5;
-            else if (x >= 2.35f) return 7;
+            if (y <= -7.5f) return 5;
             else return 6;
         }
 
         else if (cameraState == 7)
         {
-            if (x <= 2.35f) return 6;
-            else if (y >= -2.07f) return 8;
+            if (y >= -15.5f) return 5;
+            else if (x <= 25.5f) return 10;
+            else if (x >= 30.4f) return 9;
             else return 7;
         }
 
         else if (cameraState == 8)
         {
-            if (y <= -2.07f) return 7;
-            else if (y >= 2.77f) return 9;
+            if (x >= 16f) return 10;
             else return 8;
         }
         else if (cameraState == 9)
         {
-            if (y <= 2.77) return 8;
+            if (x <= 30.4f) return 7;
             else return 9;
+        }
+        else if (cameraState == 10)
+        {
+            if (x <= 16f) return 8;
+            else if (x >= 25.5f) return 7;
+            return 10;
         }
 
         return 0;
     }
+
 }

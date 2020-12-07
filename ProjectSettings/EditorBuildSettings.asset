@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels Transition/StartLevel4.unity
     guid: 94b11732b051f34468a34f5d3e6016e9
   - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: e3d59de4674f03b49a4131ccb6ddf86c
+  - enabled: 1
     path: Assets/Scenes/Levels Transition/StartLevel5.unity
     guid: 3d303eb9cbdf2704c9892145ba174089
   - enabled: 1

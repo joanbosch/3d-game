@@ -17,7 +17,8 @@ public class TimeToReappear : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         pm = GameObject.Find("Player").GetComponent<PlayerMovement>();
         cs = GameObject.Find("Camera").GetComponent<Level5Cameras>();
-        //if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level4Cameras>();
+
+        if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level4Cameras>();
         if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level3Cameras>();
         if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level2Cameras>();
         if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level1Cameras>();
