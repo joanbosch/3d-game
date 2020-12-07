@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     //god mode
     private bool godMode = false;
+    private GameObject godModeText;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         deadScript.enabled = false;
 
         movingSpikes = GameObject.FindGameObjectsWithTag("MovingSpikes");
+        godModeText = GameObject.Find("GodModeText");
+        godModeText.SetActive(godMode);
     }
 
     // Update is called once per frame
@@ -104,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("g"))
         {
             godMode = !godMode;
+            godModeText.SetActive(godMode);
         }
     }
 
