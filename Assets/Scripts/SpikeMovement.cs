@@ -8,12 +8,17 @@ public class SpikeMovement : MonoBehaviour
     public float speed = 3.0f;
     public bool directionLeft = false; // True if spike starts moving to left
 
+    private bool visible = false;
+    private AudioManager AudioManager;
+
     //private GameObject player;
     //private Rigidbody rbPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
+
         rb = GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -28,11 +33,21 @@ public class SpikeMovement : MonoBehaviour
         
     }
 
+    void OnBecameInvisible()
+    {
+        visible = false;
+    }
+    void OnBecameVisible()
+    {
+        visible = true;
+    }
+
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Player")
         {
+            if(visible) AudioManager.Play("MovingSpike");
             //Debug.Log("STOP!");
             rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
         }
@@ -44,6 +59,7 @@ public class SpikeMovement : MonoBehaviour
 
     public void changeDirection()
     {
+
         //Debug.Log("CHANGE DIRECTION!");
         if (directionLeft)
         {

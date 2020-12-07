@@ -42,13 +42,14 @@ public class Level4Cameras : CamerasScript
         cameras = new List<Vector3>();
         cameras.Add(new Vector3(0f, 0f, -6f)); // 1 FOV: 60
         cameras.Add(new Vector3(6.4f, 0f, -5.3f)); // 2 FOV: 60
-        cameras.Add(new Vector3(15.77f, -2.721f, -7.678f)); // 3 FOV: 60
+        cameras.Add(new Vector3(11.423f, -2.656f, -7.088f)); // 3 FOV: 60
         cameras.Add(new Vector3(23.96f, -6.75f, -6.64f)); // 4 FOV: 60
         cameras.Add(new Vector3(29.38f, -12f, -7.11f)); // 5 FOV: 60
         cameras.Add(new Vector3(32.55f, -5.56f, -4.76f)); // 6 FOV: 60
-        cameras.Add(new Vector3(27.37f, -20.17f, -8.3f)); // 7 FOV: 60
-        cameras.Add(new Vector3(14.17f, -20.17f, -8.3f)); // 8 FOV: 60
+        cameras.Add(new Vector3(27.37f, -20.17f, -8f)); // 7 FOV: 60
+        cameras.Add(new Vector3(14.17f, -20.17f, -8f)); // 8 FOV: 60
         cameras.Add(new Vector3(33.4f, -17.347f, -4.635f)); // 9 FOV: 60
+        cameras.Add(new Vector3(16.502f, -4.418f, -5.759f)); // 11 (pos 10)
         Player = GameObject.Find("Player");
         cameraState = 1;
         gameObject.transform.position = cameras[0];
@@ -79,10 +80,10 @@ public class Level4Cameras : CamerasScript
         else
         {
             int nextCameraState = nextState(Player.transform.position, cameraState);
-            if (cameraState == 10) followPlayer(lastCameraPos, new Vector3(Player.transform.position.x, -20.17f, -8.3f));
+            if (cameraState == 11) followPlayer(lastCameraPos, new Vector3(Player.transform.position.x, -20.17f, -8.3f));
             if (cameraState != nextCameraState)
             {
-                if (nextCameraState == 10) { setUpMovingPipesCamera(); }
+                if (nextCameraState == 11) { setUpMovingPipesCamera(); }
                 else movingCamera = true;
                 lastCameraState = cameraState;
                 lastCameraPos = gameObject.transform.position;
@@ -162,13 +163,13 @@ public class Level4Cameras : CamerasScript
         else if (cameraState == 3)
         {
             if (x <= 10f) return 2;
-            else if (x >= 21.3f) return 4;
+            else if (x >= 13.3f) return 10;
             else return 3;
         }
 
         else if (cameraState == 4)
         {
-            if (x <= 21.3f) return 3;
+            if (x <= 21.3f) return 10;
             else if (x >= 27.1f) return 5;
             else return 4;
         }
@@ -176,28 +177,28 @@ public class Level4Cameras : CamerasScript
         else if (cameraState == 5)
         {
             if (x <= 27.1f) return 4;
-            else if (y >= -7.5f) return 6;
-            else if (y <= -15.5f) return 7;
+            else if (y >= -8f) return 6;
+            else if (y <= -15.7f) return 7;
             else return 5;
         }
 
         else if (cameraState == 6)
         {
-            if (y <= -7.5f) return 5;
+            if (y <= -8f) return 5;
             else return 6;
         }
 
         else if (cameraState == 7)
         {
             if (y >= -15.5f) return 5;
-            else if (x <= 25.5f) return 10;
+            else if (x <= 25.5f) return 11;
             else if (x >= 30.4f) return 9;
             else return 7;
         }
 
         else if (cameraState == 8)
         {
-            if (x >= 16f) return 10;
+            if (x >= 16f) return 11;
             else return 8;
         }
         else if (cameraState == 9)
@@ -205,7 +206,15 @@ public class Level4Cameras : CamerasScript
             if (x <= 30.4f) return 7;
             else return 9;
         }
+
         else if (cameraState == 10)
+        {
+            if (x <= 13.3f) return 3;
+            else if (x >= 21.3f) return 4;
+            return 10;
+        }
+
+        else if (cameraState == 11)
         {
             if (x <= 16f) return 8;
             else if (x >= 25.5f) return 7;
