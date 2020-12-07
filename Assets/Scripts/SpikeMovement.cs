@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpikeMovement : MonoBehaviour
 {
     private Rigidbody rb;
-    public float speed = 3.0f;
+    public float speed = 8.0f;
     public bool directionLeft = false; // True if spike starts moving to left
 
     //private GameObject player;
@@ -16,10 +16,6 @@ public class SpikeMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-
-        //player = GameObject.Find("Player");
-        //rbPlayer = player.GetComponent<Rigidbody>();
-        //playerDirection = rbPlayer.velocity.x;
     }
 
     // Update is called once per frame
