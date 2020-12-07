@@ -3715,12 +3715,12 @@ PrefabInstance:
     - target: {fileID: 6379027675479251414, guid: 230640dec59ee6446a389058fe142f7d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.82
+      value: 9.85
       objectReference: {fileID: 0}
     - target: {fileID: 6379027675479251414, guid: 230640dec59ee6446a389058fe142f7d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.84
+      value: -1.98
       objectReference: {fileID: 0}
     - target: {fileID: 6379027675479251414, guid: 230640dec59ee6446a389058fe142f7d,
         type: 3}
@@ -5810,12 +5810,12 @@ PrefabInstance:
     - target: {fileID: 2878019745296927294, guid: 99e1f8ba7fd4ca2458cee18c311b8814,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.997
+      value: 13.7
       objectReference: {fileID: 0}
     - target: {fileID: 2878019745296927294, guid: 99e1f8ba7fd4ca2458cee18c311b8814,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.889
+      value: -5.7
       objectReference: {fileID: 0}
     - target: {fileID: 2878019745296927294, guid: 99e1f8ba7fd4ca2458cee18c311b8814,
         type: 3}
@@ -8724,6 +8724,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1725555763302496308, guid: 0ddebe3280f8ab447afa99235d1c56f0,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725555763302496308, guid: 0ddebe3280f8ab447afa99235d1c56f0,
+        type: 3}
+      propertyPath: SubModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2449152291403605088, guid: 0ddebe3280f8ab447afa99235d1c56f0,
         type: 3}
       propertyPath: m_Name
@@ -8797,6 +8807,16 @@ PrefabInstance:
     - target: {fileID: 6866595758006351707, guid: 0ddebe3280f8ab447afa99235d1c56f0,
         type: 3}
       propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011604883672323954, guid: 0ddebe3280f8ab447afa99235d1c56f0,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011604883672323954, guid: 0ddebe3280f8ab447afa99235d1c56f0,
+        type: 3}
+      propertyPath: startDelay.scalar
       value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []

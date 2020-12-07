@@ -9,6 +9,7 @@ TagManager:
   - Trace
   - SnakePoint
   - MeteorCracked
+  - MovingSpikes
   - AudioManager
   layers:
   - Default

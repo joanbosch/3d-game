@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     private ParticleSystem jumpPart;
     private ParticleSystem bloodPart;
 
+    //moving spikes
+    private GameObject[] movingSpikes;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
 
         deadScript = GetComponent<TimeToReappear>();
         deadScript.enabled = false;
+
+        movingSpikes = GameObject.FindGameObjectsWithTag("MovingSpikes");
     }
 
     // Update is called once per frame
@@ -101,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Trace")
+        if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "MovingSpikes" || collision.gameObject.tag == "Trace")
         {
             die = true;
             bloodPart.Emit(10);
@@ -114,8 +119,18 @@ public class PlayerMovement : MonoBehaviour
             sm.resetSnakeMode();
         }
         else {
-            Bounce(collision.contacts[0].normal);
+            Vector3 normal = collision.contacts[0].normal;
+            Bounce(normal);
             AudioManager.Play("GlassStep");
+            if (collision.gameObject.tag == "Wall" && ((normal.x < 0 && lastDirection.x > 0) || (normal.x > 0 && lastDirection.x < 0)))
+            {
+                foreach (GameObject ms in movingSpikes)
+                {
+                    SpikeMovement spm = ms.GetComponent<SpikeMovement>();
+                    spm.changeDirection();
+                }
+            }
+
         }
     }
 
