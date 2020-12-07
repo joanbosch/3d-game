@@ -9,6 +9,7 @@ TagManager:
   - Trace
   - SnakePoint
   - MeteorCracked
+  - AudioManager
   layers:
   - Default
   - TransparentFX

@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public float speed = 1.0f;
 
-    public AudioManager AudioManager;
+    private AudioManager AudioManager;
 
     // Is the player in horitzontal Rope?
     private bool hRope = false;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
         rb = GetComponent<Rigidbody>();
         initialDirection = initialDirection.normalized * speed;
         resetVelocity();
