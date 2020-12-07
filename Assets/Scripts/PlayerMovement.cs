@@ -31,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     //moving spikes
     private GameObject[] movingSpikes;
 
+    //god mode
+    private bool godMode = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +101,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown("g"))
+        {
+            godMode = !godMode;
+        }
     }
 
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
@@ -105,14 +112,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "MovingSpikes" || collision.gameObject.tag == "Trace")
         {
-            die = true;
-            bloodPart.Emit(10);
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-            anim.SetTrigger(deadHash);
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-            deadScript.enabled = true;
-            SnakeMecanisim sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
-            sm.resetSnakeMode();
+            if (godMode)
+            {
+                Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+            }
+            else
+            {
+                die = true;
+                bloodPart.Emit(10);
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                anim.SetTrigger(deadHash);
+                rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                deadScript.enabled = true;
+                SnakeMecanisim sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
+                sm.resetSnakeMode();
+            }
         }
         else {
             Vector3 normal = collision.contacts[0].normal;
