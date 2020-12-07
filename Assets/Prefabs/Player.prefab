@@ -9870,6 +9870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
+  deadSound: {fileID: 8300000, guid: 54f8ba1c4002b274db64331ad9207fc4, type: 3}
 --- !u!114 &1264527732042202412
 MonoBehaviour:
   m_ObjectHideFlags: 0

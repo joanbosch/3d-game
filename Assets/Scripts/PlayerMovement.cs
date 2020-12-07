@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public float speed = 1.0f;
 
+    public AudioManager AudioManager;
+
     // Is the player in horitzontal Rope?
     private bool hRope = false;
 
@@ -106,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetTrigger(deadHash);
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             deadScript.enabled = true;
+            AudioManager.Play("Kill");
             SnakeMecanisim sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
             sm.resetSnakeMode();
         }
