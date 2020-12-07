@@ -5,10 +5,11 @@ using UnityEngine;
 public class SnakeDoorScript : MonoBehaviour
 {
     private SnakeMecanisim sm;
-
+    private AudioManager AudioManager;
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
         sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
     }
 
@@ -24,6 +25,7 @@ public class SnakeDoorScript : MonoBehaviour
         //SnakeMecanisim sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
         if (other.gameObject.name == "Player")
         {
+            AudioManager.Play("Door");
             sm.resetSnakeMode();
             gameObject.SetActive(false);
         }

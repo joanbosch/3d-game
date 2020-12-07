@@ -9870,6 +9870,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
+  AudioManager: {fileID: 8200396511515682858, guid: 73c7de0ad4438494587f28bff8b46d0a,
+    type: 3}
 --- !u!114 &1264527732042202412
 MonoBehaviour:
   m_ObjectHideFlags: 0

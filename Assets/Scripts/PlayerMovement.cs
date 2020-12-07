@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public float speed = 1.0f;
 
+    private AudioManager AudioManager;
+
     // Is the player in horitzontal Rope?
     private bool hRope = false;
 
@@ -34,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
         rb = GetComponent<Rigidbody>();
         initialDirection = initialDirection.normalized * speed;
         resetVelocity();
@@ -111,13 +114,14 @@ public class PlayerMovement : MonoBehaviour
             anim.SetTrigger(deadHash);
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             deadScript.enabled = true;
+            AudioManager.Play("Kill");
             SnakeMecanisim sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
             sm.resetSnakeMode();
         }
         else {
             Vector3 normal = collision.contacts[0].normal;
             Bounce(normal);
-
+            AudioManager.Play("GlassStep");
             if (collision.gameObject.tag == "Wall" && ((normal.x < 0 && lastDirection.x > 0) || (normal.x > 0 && lastDirection.x < 0)))
             {
                 foreach (GameObject ms in movingSpikes)
@@ -126,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
                     spm.changeDirection();
                 }
             }
+
         }
     }
 

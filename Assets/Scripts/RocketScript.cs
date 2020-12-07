@@ -13,9 +13,12 @@ public class RocketScript : MonoBehaviour
     private ParticleSystem smokePart;
     private ParticleSystem firePart;
 
+    private AudioManager AudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
         elapsedTime = 0f;
         startCounter = false;
 
@@ -41,6 +44,7 @@ public class RocketScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            AudioManager.Play("Rocket");
             elapsedTime = 0f;
             startCounter = true;
             firePart.Play();
