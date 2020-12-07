@@ -116,3 +116,21 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: MeteorDoor
+    clip: {fileID: 8300000, guid: 131d78cce6d7e1142848c07240c40a85, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MovingSpike
+    clip: {fileID: 8300000, guid: a004601fe7e429f46b1c19c44162ef12, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rocket
+    clip: {fileID: 8300000, guid: 4ce8732ec60f40a49aaa18712bcd86d9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

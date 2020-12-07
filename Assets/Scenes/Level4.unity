@@ -12358,6 +12358,12 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1264527732042202412, guid: 00af913badc9cda49a99eda26f321893,
+        type: 3}
+      propertyPath: trailPrefab
+      value: 
+      objectReference: {fileID: 428677241667176726, guid: 2fff526db0b81ec4abee9df017f485be,
+        type: 3}
     - target: {fileID: 1264527732042202413, guid: 00af913badc9cda49a99eda26f321893,
         type: 3}
       propertyPath: initialPosition.x
