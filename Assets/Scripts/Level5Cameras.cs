@@ -108,7 +108,6 @@ public class Level5Cameras : CamerasScript
 
         float t = elapsedTimePipes / transitionTimePipes;
         if (t > 1.0f) t = 1.0f;
-        Debug.Log(t);
             
         gameObject.transform.position = Vector3.Lerp(from, to, t);
 

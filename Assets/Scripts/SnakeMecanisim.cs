@@ -42,6 +42,7 @@ public class SnakeMecanisim : MonoBehaviour
         if (!first) fitColliderBetween(trail, lastTrailEnd, transform.position);
         if (SnakeMode) {
             if (lastVelocity != rb.velocity) {
+                Debug.Log("NEW TRAIL!");
                 newTrail();
             }
         }

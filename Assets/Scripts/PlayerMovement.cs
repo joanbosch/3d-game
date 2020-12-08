@@ -129,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "MovingSpikes" || collision.gameObject.tag == "Trace")
         {
+            Debug.Log("Ha colisionsat amb " + collision.gameObject.tag);
             if (godMode)
             {
                 Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
