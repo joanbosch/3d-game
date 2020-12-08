@@ -126,7 +126,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Armature|normal
-  m_Speed: 4
+  m_Speed: 10
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8074278282291736272}
@@ -182,7 +182,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Armature|pressed
-  m_Speed: 1
+  m_Speed: 10
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 246518683121365286}
