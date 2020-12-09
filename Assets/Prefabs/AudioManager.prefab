@@ -51,8 +51,8 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: Electric
-    clip: {fileID: 8300000, guid: 39c6dbb0a951a414984f342cb74030b9, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 112e5d2751574e142aeeae36f7ae6853, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -133,4 +133,34 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: Electric_Sound
+    clip: {fileID: 8300000, guid: a853ab96674c4644688ea8533a2bd940, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pipe_In
+    clip: {fileID: 8300000, guid: 8ce72eab2a3566d42bf1638897564df2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pipe_Out
+    clip: {fileID: 8300000, guid: 56c30179cd703dd4daa1f9efaa498932, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Select
+    clip: {fileID: 8300000, guid: c9aff2f6359535a46b0a83f404e8d010, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pods
+    clip: {fileID: 8300000, guid: fffc9c607c9162f4ba21db185bf8cf32, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
     source: {fileID: 0}

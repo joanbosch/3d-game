@@ -32,6 +32,10 @@ public class Level3Cameras : CamerasScript
     // Sounds!
     private AudioManager AudioManager;
 
+    // ElectricShock
+    private float elapsedTimeElectric = 0f;
+    private float timeToElectricShock = 7f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +67,12 @@ public class Level3Cameras : CamerasScript
     // Update is called once per frame
     void Update()
     {
+        elapsedTimeElectric += Time.deltaTime;
+        if(elapsedTimeElectric >= timeToElectricShock)
+        {
+            AudioManager.Play("Electric_Sound");
+            elapsedTimeElectric = 0f;
+        }
         if (Input.GetKeyDown("escape"))
         {
             this.returnMainMenu();
