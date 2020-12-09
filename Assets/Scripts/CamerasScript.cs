@@ -16,7 +16,6 @@ public abstract class CamerasScript : MonoBehaviour
 
     public void shakeCamera()
     {
-        Debug.Log("Shaking");
         Vector3 originalPosition = transform.position;
         float elapsedTime = 0f;
         while (elapsedTime < duration)
@@ -25,8 +24,6 @@ public abstract class CamerasScript : MonoBehaviour
             float y = Random.Range(-1f, 1f) * magnitude;
             gameObject.transform.position = new Vector3(gameObject.transform.position.x + x, gameObject.transform.position.x + y, gameObject.transform.position.z);
             elapsedTime += Time.deltaTime;
-            Debug.Log(x + "  " + y);
-            Debug.Log("Camera position: " + gameObject.transform.position);
         }
         transform.position = originalPosition;
     }
