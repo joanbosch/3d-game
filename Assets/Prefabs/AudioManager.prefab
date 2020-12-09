@@ -51,8 +51,8 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: Electric
-    clip: {fileID: 8300000, guid: 39c6dbb0a951a414984f342cb74030b9, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 112e5d2751574e142aeeae36f7ae6853, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 1
     source: {fileID: 0}
