@@ -38,9 +38,20 @@ public class PlayerMovement : MonoBehaviour
     private GameObject godModeText;
     private List<Collider> disabledColliders;
 
+
+    // Shake when collide
+    private CamerasScript cs;
     // Start is called before the first frame update
     void Start()
     {
+        // Camera
+
+        cs = GameObject.Find("Camera").GetComponent<Level5Cameras>();
+        if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level4Cameras>();
+        if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level3Cameras>();
+        if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level2Cameras>();
+        if (cs == null) cs = GameObject.Find("Camera").GetComponent<Level1Cameras>();
+
         AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
         rb = GetComponent<Rigidbody>();
         initialDirection = initialDirection.normalized * speed;
@@ -149,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else {
+            cs.shakeCamera();
             Vector3 normal = collision.contacts[0].normal;
             Bounce(normal);
             AudioManager.Play("GlassStep");
