@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
                 deadScript.enabled = true;
                 AudioManager.Play("Kill");
                 SnakeMecanisim sm = GameObject.Find("Player").GetComponent<SnakeMecanisim>();
-                //sm.resetSnakeMode();
+                sm.resetSnakeMode();
             }
         }
         else {
