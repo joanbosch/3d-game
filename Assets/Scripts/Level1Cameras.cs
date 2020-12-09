@@ -40,7 +40,7 @@ public class Level1Cameras : CamerasScript
         setUpMovingCamera();
         setUpMovingPipesCamera();
         cameras = new List<Vector3>();
-        cameras.Add(new Vector3(-4.89f, 5.87f, -5.3f)); // FOV: 60
+        cameras.Add(new Vector3(-4.62f, 6.35f, -3.9f)); // FOV: 60
         cameras.Add(new Vector3(-1.16f, 5.87f, -5.3f)); // FOV: 60
         cameras.Add(new Vector3(-1.05f, 0.23f, -5.2f)); // FOV: 60
         cameras.Add(new Vector3(-5.01f, 0.23f, -5.2f)); // FOV: 60
@@ -149,13 +149,13 @@ public class Level1Cameras : CamerasScript
         float y = playerPos.y;
         if (cameraState == 1)
         {
-            if (x >= -2.87f) return 2;
+            if (x >= -1.52f) return 2;
             else return 1;
         }
 
         else if (cameraState == 2)
         {
-            if (x <= -2.87f) return 1;
+            if (x <= -1.52f) return 1;
             else if (y <= 2.86f) return 3;
             else return 2;
         }
