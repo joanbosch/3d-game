@@ -152,3 +152,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Select
+    clip: {fileID: 8300000, guid: c9aff2f6359535a46b0a83f404e8d010, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pods
+    clip: {fileID: 8300000, guid: fffc9c607c9162f4ba21db185bf8cf32, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
