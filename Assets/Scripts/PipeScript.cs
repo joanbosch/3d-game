@@ -14,9 +14,11 @@ public class PipeScript : MonoBehaviour
     private Rigidbody rb;
     private Transform t;
 
+    private AudioManager AudioManager;
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = (AudioManager)FindObjectOfType(typeof(AudioManager));
         pm =  GameObject.Find("Player").GetComponent<PlayerMovement>();
         rb = GameObject.Find("Player").GetComponent<Rigidbody>();
         t = GameObject.Find("Player").transform;
@@ -30,6 +32,7 @@ public class PipeScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        AudioManager.Play("Pipe_In");
         if (!vertical)
         {
             rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
@@ -44,6 +47,7 @@ public class PipeScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        AudioManager.Play("Pipe_Out");
         rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         pm.resethRope();
     }

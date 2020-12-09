@@ -134,3 +134,21 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Electric_Sound
+    clip: {fileID: 8300000, guid: a853ab96674c4644688ea8533a2bd940, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pipe_In
+    clip: {fileID: 8300000, guid: 8ce72eab2a3566d42bf1638897564df2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pipe_Out
+    clip: {fileID: 8300000, guid: 56c30179cd703dd4daa1f9efaa498932, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
