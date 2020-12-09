@@ -206,12 +206,12 @@ public class Level5Cameras : CamerasScript
         else if (cameraState == 9)
         {
             if ((x <= 3.7) && (y <= 10.6f)) return 8;
-            else if (x >= 10.1f) return 10;
+            else if (x >= 10.4f) return 10;
             else return 9;
         }
         else if (cameraState == 10)
         {
-            if (x <= 10.1f) return 9;
+            if (x <= 10.4f) return 9;
             else if (y <= 9.5f) return 12;
             return 10;
         }

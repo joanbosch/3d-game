@@ -27,9 +27,15 @@ public class SnakeMecanisim : MonoBehaviour
     // Current Tail
     Collider lastTrail;
     Collider trail;
+
+    // CoolDown to put new trace
+    private float coolDown = 0.1f;
+    private float timer = 0.0f;
+    private Rigidbody prb;
     // Start is called before the first frame update
     void Start()
     {
+        prb = GameObject.Find("Player").GetComponent<Rigidbody>();
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         lastVelocity = new Vector3(1.0f, 1.0f, 0.0f);
@@ -39,17 +45,34 @@ public class SnakeMecanisim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         if (!first) fitColliderBetween(trail, lastTrailEnd, transform.position);
         if (SnakeMode) {
-            if (lastVelocity != rb.velocity) {
+            if (timeToPutNewTrail()) {
                 Debug.Log("NEW TRAIL!");
                 newTrail();
             }
         }
         lastVelocity = rb.velocity;
     }
+    bool timeToPutNewTrail()
+    {
+        //if (timer < coolDown) return false;
+        if (lastVelocity.x < 0)
+        {
+            if (rb.velocity.x >= 0) return true;
+        }
+        else if (rb.velocity.x < 0) return true;
 
+        if (lastVelocity.y < 0)
+        {
+            if (rb.velocity.y >= 0) return true;
+        }
+        else if (rb.velocity.y < 0) return true;
+        return false;
+    }
     void newTrail() {
+        timer = 0f;
         if (!first)
         {
             if (!second)
@@ -65,12 +88,15 @@ public class SnakeMecanisim : MonoBehaviour
 
         // Obtain the position of the next trail
         Quaternion q = new Quaternion();
+        if (rb.velocity.x == 0 || rb.velocity.y == 0) Debug.Log("Bad Velocity!! " + rb.velocity);
         q.SetLookRotation(rb.velocity);
 
         // Add a new trail
         GameObject go = Instantiate(trailPrefab, transform.position, q);
+
         trails.Add(go);
         trail = go.GetComponent<Collider>();
+       
         Physics.IgnoreCollision(trail, collider);
     }
 
@@ -82,6 +108,8 @@ public class SnakeMecanisim : MonoBehaviour
 
     public void enableSnakeMode() {
         SnakeMode = true;
+        prb.constraints = RigidbodyConstraints.FreezePositionZ;
+        prb.constraints = RigidbodyConstraints.FreezeRotation;
         newTrail();
 
     }
@@ -92,6 +120,10 @@ public class SnakeMecanisim : MonoBehaviour
         {
             Destroy(trails[i]);
         }
+        prb.constraints = RigidbodyConstraints.None;
+        prb.constraints = RigidbodyConstraints.FreezePositionZ;
+        prb.constraints = RigidbodyConstraints.FreezeRotationX;
+        prb.constraints = RigidbodyConstraints.FreezeRotationY;
         first = true;
         second = true;
         trails = new List<GameObject>();
