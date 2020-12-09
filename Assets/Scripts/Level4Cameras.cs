@@ -218,7 +218,7 @@ public class Level4Cameras : CamerasScript
         {
             if (x <= 16f) return 8;
             else if (x >= 25.5f) return 7;
-            return 10;
+            return 11;
         }
 
         return 0;

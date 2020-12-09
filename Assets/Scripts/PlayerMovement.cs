@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     //god mode
     private bool godMode = false;
     private GameObject godModeText;
+    private List<Collider> disabledColliders;
 
     // Start is called before the first frame update
     void Start()
@@ -54,12 +55,13 @@ public class PlayerMovement : MonoBehaviour
         movingSpikes = GameObject.FindGameObjectsWithTag("MovingSpikes");
         godModeText = GameObject.Find("GodModeText");
         godModeText.SetActive(godMode);
+        disabledColliders = new List<Collider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Mathf.Abs(rb.velocity.x) != initialDirection.x) || (Mathf.Abs(rb.velocity.y) != initialDirection.y) && !die) 
+        if ((Mathf.Abs(rb.velocity.x) != initialDirection.x) || (Mathf.Abs(rb.velocity.y) != initialDirection.y) && !die)
         {
             float x_mult = 1;
             float y_mult = 1;
@@ -111,6 +113,14 @@ public class PlayerMovement : MonoBehaviour
         {
             godMode = !godMode;
             godModeText.SetActive(godMode);
+            if (!godMode) //if disabled restore colliders
+            {
+                foreach (Collider c in disabledColliders)
+                {
+                    Physics.IgnoreCollision(c, GetComponent<Collider>(), false);
+                }
+                disabledColliders = new List<Collider>();
+            }
         }
     }
 
@@ -119,9 +129,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "MovingSpikes" || collision.gameObject.tag == "Trace")
         {
+            Debug.Log("Ha colisionsat amb " + collision.gameObject.tag);
             if (godMode)
             {
                 Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+                disabledColliders.Add(collision.collider);
             }
             else
             {
