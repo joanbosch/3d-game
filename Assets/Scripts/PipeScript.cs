@@ -32,24 +32,30 @@ public class PipeScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        AudioManager.Play("Pipe_In");
-        if (!vertical)
+        if (other.tag == "Player")
         {
-            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-            t.position = new Vector3(t.position.x, gameObject.transform.position.y, 0.0f);
-            pm.sethRope();
-        }
-        else {
-            rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-            t.position = new Vector3(gameObject.transform.position.x, t.position.y, 0.0f);
+            AudioManager.Play("Pipe_In");
+            if (!vertical)
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                t.position = new Vector3(t.position.x, gameObject.transform.position.y, 0.0f);
+                pm.sethRope();
+            }
+            else {
+                rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                t.position = new Vector3(gameObject.transform.position.x, t.position.y, 0.0f);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        AudioManager.Play("Pipe_Out");
-        rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-        pm.resethRope();
+        if (other.tag == "Player")
+        {
+            AudioManager.Play("Pipe_Out");
+            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+            pm.resethRope();
+        }
     }
 }
 
