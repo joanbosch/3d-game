@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public abstract class CamerasScript : MonoBehaviour
 {
-    public float duration = 1.2f;
-    public float magnitude = 10f;
+    public float duration = 0.2f;
+    public float magnitude = 0.03f;
     public abstract void moveCameraToOrigin();
 
     public void returnMainMenu()
@@ -14,7 +14,7 @@ public abstract class CamerasScript : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void shakeCamera()
+    public IEnumerator shakeCamera()
     {
         Vector3 originalPosition = transform.position;
         float elapsedTime = 0f;
@@ -22,9 +22,11 @@ public abstract class CamerasScript : MonoBehaviour
         {
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x + x, gameObject.transform.position.x + y, gameObject.transform.position.z);
+            transform.localPosition = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
             elapsedTime += Time.deltaTime;
+
+            yield return null;
         }
-        transform.position = originalPosition;
+        transform.localPosition = originalPosition;
     }
 }

@@ -1219,8 +1219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c45b2c48132fd428b41de3f6c69237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1.2
-  magnitude: 10
+  duration: 0.2
+  magnitude: 0.03
   transitionTime: 1
   transitionTimePipes: 0.6
 --- !u!1 &187870537
