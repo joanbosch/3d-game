@@ -13,6 +13,7 @@ public class SpikeMovement : MonoBehaviour
 
     //private GameObject player;
     //private Rigidbody rbPlayer;
+    private float previousTime = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -57,15 +58,20 @@ public class SpikeMovement : MonoBehaviour
     {
 
         //Debug.Log("CHANGE DIRECTION!");
-        if (directionLeft)
+        float deltaTime = Time.time - previousTime;
+        if (deltaTime > 0.001f) // Avoiding two simultaneous changes of direction
         {
-            rb.velocity = new Vector3(-speed, 0.0f, 0.0f);
-            directionLeft = false; // Next time spike will move to right
-        }
-        else
-        {
-            rb.velocity = new Vector3(speed, 0.0f, 0.0f);
-            directionLeft = true; // Next time spike will move to left
+            previousTime = Time.time;
+            if (directionLeft)
+            {
+                rb.velocity = new Vector3(-speed, 0.0f, 0.0f);
+                directionLeft = false; // Next time spike will move to right
+            }
+            else
+            {
+                rb.velocity = new Vector3(speed, 0.0f, 0.0f);
+                directionLeft = true; // Next time spike will move to left
+            }
         }
     }
 
