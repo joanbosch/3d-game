@@ -8,6 +8,8 @@ public abstract class CamerasScript : MonoBehaviour
     public float duration = 0.2f;
     public float magnitude = 0.03f;
     public abstract void moveCameraToOrigin();
+    public abstract bool getMovingCamera();
+    public abstract bool getMovingCameraPipes();
 
     public void returnMainMenu()
     {
@@ -16,17 +18,20 @@ public abstract class CamerasScript : MonoBehaviour
 
     public IEnumerator shakeCamera()
     {
-        Vector3 originalPosition = transform.position;
-        float elapsedTime = 0f;
-        while (elapsedTime < duration)
+        if (!this.getMovingCamera() && !this.getMovingCameraPipes())
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
-            transform.localPosition = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
-            elapsedTime += Time.deltaTime;
+            Vector3 originalPosition = transform.position;
+            float elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                float x = Random.Range(-1f, 1f) * magnitude;
+                float y = Random.Range(-1f, 1f) * magnitude;
+                transform.localPosition = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
+                elapsedTime += Time.deltaTime;
 
-            yield return null;
+                yield return null;
+            }
+            transform.localPosition = originalPosition;
         }
-        transform.localPosition = originalPosition;
     }
 }

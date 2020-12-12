@@ -10,7 +10,7 @@ public class Level5Cameras : CamerasScript
 
     // Smooth moving camera variables
     private bool firstIt;
-    private bool movingCamera;
+    protected bool movingCamera;
     private float elapsedTime;
     public float transitionTime = 1f; // Time in seconds
     private int lastCameraState = 1;
@@ -19,7 +19,7 @@ public class Level5Cameras : CamerasScript
 
     // Smooth transition of the z component inside pipes!
     private bool firstItPipes;
-    private bool movingCameraPipes;
+    protected bool movingCameraPipes;
     private float elapsedTimePipes;
     public float transitionTimePipes = 0.6f; // Time in seconds
 
@@ -231,5 +231,15 @@ public class Level5Cameras : CamerasScript
         }
 
         return 0;
+    }
+
+    public override bool getMovingCamera()
+    {
+        return movingCamera;
+    }
+
+    public override bool getMovingCameraPipes()
+    {
+        return movingCameraPipes;
     }
 }

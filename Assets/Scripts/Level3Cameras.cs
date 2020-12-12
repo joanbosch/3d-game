@@ -236,4 +236,14 @@ public class Level3Cameras : CamerasScript
 
         return 0;
     }
+
+    public override bool getMovingCamera()
+    {
+        return movingCamera;
+    }
+
+    public override bool getMovingCameraPipes()
+    {
+        return movingCameraPipes;
+    }
 }
