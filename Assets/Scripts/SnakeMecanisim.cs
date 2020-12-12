@@ -130,6 +130,7 @@ public class SnakeMecanisim : MonoBehaviour
         prb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         first = true;
         second = true;
+        third = true;
         trails = new List<GameObject>();
     }
 }
