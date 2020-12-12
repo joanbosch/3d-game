@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else {
-            cs.shakeCamera();
+            StartCoroutine(cs.shakeCamera());
             Vector3 normal = collision.contacts[0].normal;
             Bounce(normal);
             AudioManager.Play("GlassStep");

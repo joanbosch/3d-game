@@ -1528,6 +1528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5626d2c71b90af143ba1af9d461a725f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 0.2
+  magnitude: 0.03
   transitionTime: 1
   transitionTimePipes: 0.6
 --- !u!1001 &185446325

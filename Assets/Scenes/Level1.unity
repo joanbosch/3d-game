@@ -2443,6 +2443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d9e7c8f9554384296a6554e7c87f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 0.2
+  magnitude: 0.03
   transitionTime: 1
   transitionTimePipes: 0.6
 --- !u!1001 &578227962
@@ -7383,7 +7385,7 @@ PrefabInstance:
     - target: {fileID: 1063676609349082720, guid: 2c4a882ad38d2d94489a4f6e6639b715,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.67
+      value: -7.869
       objectReference: {fileID: 0}
     - target: {fileID: 1063676609349082720, guid: 2c4a882ad38d2d94489a4f6e6639b715,
         type: 3}
