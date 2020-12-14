@@ -219,4 +219,9 @@ public class Level1Cameras : CamerasScript
     {
         return movingCameraPipes;
     }
+
+    public override bool getFollowingPlayer()
+    {
+        return false;
+    }
 }

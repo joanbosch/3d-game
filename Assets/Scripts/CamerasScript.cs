@@ -10,6 +10,7 @@ public abstract class CamerasScript : MonoBehaviour
     public abstract void moveCameraToOrigin();
     public abstract bool getMovingCamera();
     public abstract bool getMovingCameraPipes();
+    public abstract bool getFollowingPlayer();
 
     public void returnMainMenu()
     {
@@ -18,7 +19,7 @@ public abstract class CamerasScript : MonoBehaviour
 
     public IEnumerator shakeCamera()
     {
-        if (!this.getMovingCamera() && !this.getMovingCameraPipes())
+        if (!this.getMovingCamera() && !this.getMovingCameraPipes() && !getFollowingPlayer())
         {
             Vector3 originalPosition = transform.position;
             float elapsedTime = 0f;

@@ -23,6 +23,9 @@ public class Level5Cameras : CamerasScript
     private float elapsedTimePipes;
     public float transitionTimePipes = 0.6f; // Time in seconds
 
+
+    // Variables to follow the player
+    private bool followingPlayer;
     // Smooth transition to move the camera to the origin of the game.
     private bool cameraToOrigin;
 
@@ -59,6 +62,8 @@ public class Level5Cameras : CamerasScript
 
         // If the camera is reset, reset the snake mode.
         sm = GameObject.Find("Snake5").GetComponent<EnableSnakeMode>();
+
+        followingPlayer = false;
     }
 
     // Update is called once per frame
@@ -83,8 +88,12 @@ public class Level5Cameras : CamerasScript
             if (cameraState == 11 || cameraState == 12 || cameraState == 8) followPlayer(lastCameraPos, new Vector3(Player.transform.position.x, Player.transform.position.y, -4f));
             if (cameraState != nextCameraState)
             {
-                if ((nextCameraState == 11) || (nextCameraState == 12) || (nextCameraState == 8)) { setUpMovingPipesCamera(); }
-                else movingCamera = true;
+                if ((nextCameraState == 11) || (nextCameraState == 12) || (nextCameraState == 8)) { followingPlayer = true; setUpMovingPipesCamera(); }
+                else
+                {
+                    followingPlayer = false;
+                    movingCamera = true;
+                }
                 lastCameraState = cameraState;
                 lastCameraPos = gameObject.transform.position;
                 cameraState = nextCameraState;
@@ -241,5 +250,10 @@ public class Level5Cameras : CamerasScript
     public override bool getMovingCameraPipes()
     {
         return movingCameraPipes;
+    }
+
+    public override bool getFollowingPlayer()
+    {
+        return followingPlayer;
     }
 }

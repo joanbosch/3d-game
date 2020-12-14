@@ -246,4 +246,9 @@ public class Level3Cameras : CamerasScript
     {
         return movingCameraPipes;
     }
+
+    public override bool getFollowingPlayer()
+    {
+        return false;
+    }
 }
