@@ -4,7 +4,8 @@ This is a clone of the QOMP game developed in the Videogames subject in the FIB-
 
 [![QOMP](https://img.youtube.com/vi/13K_3HzZxrc/0.jpg)](https://www.youtube.com/watch?v=13K_3HzZxrc)
 
-### Intallation 🔧
+## Intallation 🔧
+Check [releases](https://github.com/joanbosch/QOMP/releases/tag/V1) in GitHub project
 
 ## Made with 🛠️
 
