@@ -1,6 +1,8 @@
-# QOMP - VJ 2020/21 Q1
+# AMONG US - AFTER EJECTION
 
 This is a clone of the QOMP game developed in the Videogames subject in the FIB-UPC.
+
+[![QOMP](https://img.youtube.com/vi/13K_3HzZxrc/0.jpg)](https://www.youtube.com/watch?v=13K_3HzZxrc)
 
 ### Intallation 🔧
 
